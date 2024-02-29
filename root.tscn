@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://broclgq0ytjw6"]
+
+[ext_resource type="Script" path="res://BodyMovement.gd" id="1_dsbvk"]
+[ext_resource type="Texture2D" uid="uid://2s6jgvgihneu" path="res://textures/Screenshot 2024-02-21 191750.png" id="1_iv5sv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu01m"]
+albedo_texture = ExtResource("1_iv5sv")
+uv1_triplanar = true
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_7tosk"]
+
+[sub_resource type="Sky" id="Sky_c0swg"]
+sky_material = SubResource("PhysicalSkyMaterial_7tosk")
+
+[sub_resource type="Environment" id="Environment_cc2ak"]
+background_mode = 2
+background_energy_multiplier = 4.37
+sky = SubResource("Sky_c0swg")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6afeb"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8b682"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="Root" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="Map"]
+use_collision = true
+size = Vector3(30, 0.2, 30)
+material = SubResource("StandardMaterial3D_pu01m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
+transform = Transform3D(0.831363, -0.522023, -0.190599, 0.486681, 0.518333, 0.703187, -0.268286, -0.677365, 0.684981, 0, 8.69669, 57.2122)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
+environment = SubResource("Environment_cc2ak")
+
+[node name="Body" type="CharacterBody3D" parent="."]
+script = ExtResource("1_dsbvk")
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926415, 0)
+mesh = SubResource("CapsuleMesh_6afeb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926415, 0)
+shape = SubResource("ConvexPolygonShape3D_8b682")
+
+[node name="Head" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63231, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Body/Head"]
