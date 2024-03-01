@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://broclgq0ytjw6"]
+[gd_scene load_steps=7 format=3 uid="uid://broclgq0ytjw6"]
 
-[ext_resource type="Script" path="res://BodyMovement.gd" id="1_dsbvk"]
 [ext_resource type="Texture2D" uid="uid://2s6jgvgihneu" path="res://textures/Screenshot 2024-02-21 191750.png" id="1_iv5sv"]
+[ext_resource type="PackedScene" uid="uid://bia6wsl27q7mg" path="res://nissan_gtr.tscn" id="2_8ejv4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu01m"]
 albedo_texture = ExtResource("1_iv5sv")
@@ -17,18 +17,13 @@ background_mode = 2
 background_energy_multiplier = 4.37
 sky = SubResource("Sky_c0swg")
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6afeb"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8b682"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
-
 [node name="Root" type="Node3D"]
 
 [node name="Map" type="Node3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="Map"]
 use_collision = true
-size = Vector3(30, 0.2, 30)
+size = Vector3(500, 0.2, 500)
 material = SubResource("StandardMaterial3D_pu01m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
@@ -38,18 +33,5 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
 environment = SubResource("Environment_cc2ak")
 
-[node name="Body" type="CharacterBody3D" parent="."]
-script = ExtResource("1_dsbvk")
-
-[node name="Mesh" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926415, 0)
-mesh = SubResource("CapsuleMesh_6afeb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.926415, 0)
-shape = SubResource("ConvexPolygonShape3D_8b682")
-
-[node name="Head" type="Node3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63231, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Body/Head"]
+[node name="Nissan GTR" parent="." instance=ExtResource("2_8ejv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.836227, 0.992626, -0.0918292)
