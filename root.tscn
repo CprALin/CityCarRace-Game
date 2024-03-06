@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://broclgq0ytjw6"]
+[gd_scene load_steps=8 format=3 uid="uid://broclgq0ytjw6"]
 
 [ext_resource type="Texture2D" uid="uid://2s6jgvgihneu" path="res://textures/Screenshot 2024-02-21 191750.png" id="1_iv5sv"]
 [ext_resource type="PackedScene" uid="uid://bia6wsl27q7mg" path="res://nissan_gtr.tscn" id="2_8ejv4"]
+[ext_resource type="PackedScene" uid="uid://be5oydxktcish" path="res://road.tscn" id="2_k5mv5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu01m"]
 albedo_texture = ExtResource("1_iv5sv")
@@ -20,6 +21,7 @@ sky = SubResource("Sky_c0swg")
 [node name="Root" type="Node3D"]
 
 [node name="Map" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.801, 0, 0)
 
 [node name="Ground" type="CSGBox3D" parent="Map"]
 use_collision = true
@@ -33,5 +35,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
 environment = SubResource("Environment_cc2ak")
 
+[node name="road" parent="Map" instance=ExtResource("2_k5mv5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8181, 9.95786, -5.2949)
+
 [node name="Nissan GTR" parent="." instance=ExtResource("2_8ejv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.836227, 0.992626, -0.0918292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.84456, -1)

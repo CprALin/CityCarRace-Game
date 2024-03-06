@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://be5oydxktcish"]
+
+[ext_resource type="Texture2D" uid="uid://bsfo1upwq2qqq" path="res://textures/Screenshot 2024-03-06 191735.png" id="1_61o00"]
+
+[sub_resource type="Curve3D" id="Curve3D_5i2qc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -14.6821, -0.468522, 6.71883, -0.0173507, 0.0563993, -0.102798, 0, 0, 0, 0, 0, 0, 4.54933, 0.492513, 58.239, -49.9978, -1.86837, -8.4102, 49.9978, 1.86837, 8.4102, 76.3792, 6.02918, 134.778, 13.1087, -0.545563, 11.241, -13.1087, 0.545563, -11.241, 80.2832, 2.43212, 92.4567, -69.4675, 8.46208, 21.6991, 69.4675, -8.46208, -21.6991, 120.858, 1.54187, 33.9821, -46.7565, -4.01592, 53.48, 46.7565, 4.01592, -53.48, 243.359, 15.7405, 25.7031, 0, 0, 0, 0, 0, 0, 181.041, 12.8637, -61.3977, 33.446, 4.15307, -10.6433, -33.446, -4.15307, 10.6433, 102.492, 3.93503, -57.7279, 0, 0, 0, -11.238, -4.41605, 5.13819, -0.0173507, 0.0563993, -0.102798),
+"tilts": PackedFloat32Array(0.0266374, 0, -0.00775452, 0, 0, 0, 0, 0, -0.0403904)
+}
+point_count = 9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_832lv"]
+albedo_texture = ExtResource("1_61o00")
+uv1_triplanar = true
+
+[node name="road" type="Node3D"]
+
+[node name="Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_5i2qc")
+
+[node name="StreetComp" type="CSGPolygon3D" parent="Path"]
+use_collision = true
+flip_faces = true
+polygon = PackedVector2Array(0, 0, 0.971139, 0.180033, 10.1769, 0.193718, 11.248, -0.00894165)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 0.57
+path_joined = true
+material = SubResource("StandardMaterial3D_832lv")
