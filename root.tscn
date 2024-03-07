@@ -1,12 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://broclgq0ytjw6"]
+[gd_scene load_steps=6 format=3 uid="uid://broclgq0ytjw6"]
 
-[ext_resource type="Texture2D" uid="uid://2s6jgvgihneu" path="res://textures/Screenshot 2024-02-21 191750.png" id="1_iv5sv"]
 [ext_resource type="PackedScene" uid="uid://bia6wsl27q7mg" path="res://nissan_gtr.tscn" id="2_8ejv4"]
 [ext_resource type="PackedScene" uid="uid://be5oydxktcish" path="res://road.tscn" id="2_k5mv5"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pu01m"]
-albedo_texture = ExtResource("1_iv5sv")
-uv1_triplanar = true
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_7tosk"]
 
@@ -23,11 +18,6 @@ sky = SubResource("Sky_c0swg")
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.801, 0, 0)
 
-[node name="Ground" type="CSGBox3D" parent="Map"]
-use_collision = true
-size = Vector3(500, 0.2, 500)
-material = SubResource("StandardMaterial3D_pu01m")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
 transform = Transform3D(0.831363, -0.522023, -0.190599, 0.486681, 0.518333, 0.703187, -0.268286, -0.677365, 0.684981, 0, 8.69669, 57.2122)
 shadow_enabled = true
@@ -36,7 +26,6 @@ shadow_enabled = true
 environment = SubResource("Environment_cc2ak")
 
 [node name="road" parent="Map" instance=ExtResource("2_k5mv5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.8181, 9.95786, -5.2949)
 
 [node name="Nissan GTR" parent="." instance=ExtResource("2_8ejv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.84456, -1)
+transform = Transform3D(0.52458, 0, -0.851361, 0, 1, 0, 0.851361, 0, 0.52458, -35, 3.1928, -50)
